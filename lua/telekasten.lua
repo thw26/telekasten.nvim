@@ -2917,7 +2917,17 @@ local function Setup(cfg)
     end
     -- TODO: this is obsolete:
     if vim.fn.executable("rg") == 1 then
-        M.Cfg.find_command = { "rg", "--files", "--sortr", "created" }
+        M.Cfg.find_command = {
+			"rg",
+			"--no-require-git",
+			"--ignore-file",
+			"/scripts/Config/gitignore",
+			"--follow",
+			"--hidden",
+			"--files",
+			"--sortr",
+			"created",
+        }
     else
         M.Cfg.find_command = nil
     end
